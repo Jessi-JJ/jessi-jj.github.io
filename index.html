@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jessi Jaramillo — Director of AI Programs</title>
+<style>
+  :root{
+    --bg:#F5F3EC;
+    --paper:#FBFAF6;
+    --ink:#1B1B18;
+    --ink-soft:#4A473F;
+    --teal:#1F4B4A;
+    --teal-soft:#DCE7E6;
+    --amber:#B8763E;
+    --amber-soft:#F1E3D3;
+    --line:#DAD5C8;
+    --max:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+
+  header.hero{
+    padding:96px 0 56px;
+    position:relative;
+  }
+ .hero-grid{
+  display:grid;
+  grid-template-columns:1.3fr 0.9fr;
+  gap:56px;
+  align-items:center;
+}
+.portrait-frame{
+  position:relative;
+  border:1px solid var(--line);
+  background:var(--paper);
+  padding:10px;
+}
+.portrait-frame img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+  .eyebrow{
+    font-family:ui-monospace,"SF Mono","Cascadia Code",Consolas,monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 18px;
+  }
+  h1{
+    font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif;
+    font-weight:700;
+    font-size:clamp(40px,6vw,60px);
+    line-height:1.02;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  h1 .slash{color:var(--amber);}
+  .role-line{
+    font-size:19px;
+    color:var(--ink);
+    margin:0 0 22px;
+    font-weight:600;
+  }
+  .role-line .org{color:var(--teal);}
+  .lede{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin:0 0 26px;
+  }
+  .hero-links{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:12.5px;
+    letter-spacing:.04em;
+    text-decoration:none;
+    padding:10px 16px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    border-radius:2px;
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn:hover{background:var(--ink);color:var(--paper);}
+  .btn.primary{background:var(--teal);border-color:var(--teal);color:var(--paper);}
+  .btn.primary:hover{background:#163938;}
+
+  hr.rule{
+    border:none;
+    border-top:1px solid var(--line);
+    margin:0;
+  }
+
+  section{padding:64px 0;}
+  section.tight{padding:48px 0;}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:8px;
+  }
+  h2{
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:27px;
+    margin:0;
+    font-weight:700;
+  }
+  .section-meta{
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.05em;
+    white-space:nowrap;
+  }
+  .section-sub{
+    color:var(--ink-soft);
+    font-size:15.5px;
+    max-width:98ch;
+    margin:6px 0 32px;
+  }
+
+  /* Pilot cards - signature element: audit-ledger style */
+  .pilots{
+    display:grid;
+    gap:14px;
+  }
+  .pilot{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal);
+    padding:22px 24px;
+    display:grid;
+    grid-template-columns:100px 1fr;
+    gap:22px;
+  }
+  .pilot:nth-child(2){border-left-color:var(--amber);}
+  .pilot:nth-child(3){border-left-color:#5B6B8C;}
+  .pilot-tag{
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    padding-top:2px;
+  }
+  .pilot-status{
+    display:inline-block;
+    margin-top:8px;
+    font-size:10.5px;
+    padding:3px 7px;
+    background:var(--teal-soft);
+    color:var(--teal);
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  }
+  .pilot h3{
+    margin:0 0 8px;
+    font-size:17.5px;
+    font-family:Georgia,serif;
+  }
+  .pilot p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:14.8px;
+  }
+  .pilot .scope{
+    margin-top:10px;
+    font-size:13px;
+    color:var(--ink);
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+  }
+
+  .foundation-note{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    border-top:1px dashed var(--line);
+    margin-top:22px;
+    padding-top:18px;
+  }
+
+  /* Experience timeline */
+  .timeline{border-top:1px solid var(--line);}
+  .trow{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:20px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .trow .when{
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    padding-top:3px;
+  }
+  .trow h4{
+    margin:0 0 4px;
+    font-size:16px;
+    font-weight:700;
+  }
+  .trow .co{color:var(--teal);font-weight:600;}
+  .trow p{margin:6px 0 0;color:var(--ink-soft);font-size:14.3px;max-width:64ch;}
+
+  /* skills */
+  .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .skill-group h4{
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 12px;
+  }
+  .tags{display:flex;flex-wrap:wrap;gap:7px;}
+  .tag{
+    font-size:12.8px;
+    padding:5px 10px;
+    background:var(--amber-soft);
+    color:#6b4a26;
+    border-radius:2px;
+  }
+
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+  .edu-item{padding-bottom:6px;}
+  .edu-item .deg{font-weight:700;font-size:15px;}
+  .edu-item .school{color:var(--teal);font-size:14px;}
+  .edu-item .when{
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  ul.certs{margin:14px 0 0;padding-left:18px;color:var(--ink-soft);font-size:14px;}
+  ul.certs li{margin-bottom:4px;}
+
+  footer{
+    padding:56px 0 80px;
+    text-align:left;
+  }
+  footer .contact-line{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-size:14.5px;
+    margin-bottom:8px;
+  }
+  footer a{color:var(--ink);}
+  footer .fine{color:var(--ink-soft);font-size:12.5px;margin-top:18px;}
+
+  @media (max-width:760px){
+  .hero-grid{grid-template-columns:1fr;}
+  .portrait-frame{max-width:280px;}
+  .pilot{grid-template-columns:1fr;}
+  .skill-groups{grid-template-columns:1fr;}
+  .edu-grid{grid-template-columns:1fr;}
+  .trow{grid-template-columns:1fr;}
+  header.hero{padding:64px 0 40px;}
+}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Portfolio — updated 2026</p>
+        <h1><span class="slash">//</span> Jessi Jaramillo</h1>
+        <p class="role-line">Director of AI Programs, <span class="org">Upstate Caring Partners</span></p>
+        <p class="lede">Nearly a decade in marketing and program management. Now leading the policy, governance, and operational infrastructure for AI at the largest behavioral healthcare and human-services organization in Central NY.</p>
+        <div class="hero-links">
+          <a class="btn primary" href="mailto:jessi@jessijaramillo.com">Email</a>
+          <a class="btn" href="https://linkedin.com/in/jessijj" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="portrait-frame">
+        <img src="headshot.jpg" alt="Portrait of Jessi Jaramillo">
+      </div>
+    </div>
+  </header>
+
+  <hr class="rule">
+  <section id="strategy">
+  <div class="section-head">
+    <h2>The Roadmap</h2>
+    <span class="section-meta">JAN 2026 - PRESENT</span>
+  </div>
+  <p class="section-sub">Since joining Upstate Caring Partners as Director of AI Programs, the first phase of work began by establishing a strategy. This three-stage roadmap provides a phased approach: measurable proof of value, establishing governance, infrastructure for scale. It mirrors the strategy leading health systems are converging on for responsible AI adoption.</p>
+
+  <div style="display:flex;align-items:center;margin:8px 0 6px;">
+    <span style="width:12px;height:12px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
+    <span style="flex:1;height:2px;background:var(--teal);margin:0 2px;"></span>
+    <span style="width:12px;height:12px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
+    <span style="flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px);margin:0 2px;"></span>
+    <span style="width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--line);flex-shrink:0;"></span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;font-family:ui-monospace,'SF Mono',Consolas,monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:28px;">
+    <span>Stage 1 — IN PROGRESS</span>
+    <span style="text-align:center;">Stage 2 — IN PROGRESS</span>
+    <span style="text-align:right;">Stage 3 — UP NEXT</span>
+  </div>
+
+  <div class="pilots">
+    <div class="pilot">
+      <div class="pilot-tag">01</div>
+      <div>
+        <h3>Proof of value</h3>
+        <p>Targeted pilots that validate efficiency gains and quality improvements before any wider rollout — the policy assistant, documentation quality, and incident review programs below.</p>
+        <span class="pilot-status">Underway</span>
+      </div>
+    </div>
+
+    <div class="pilot">
+      <div class="pilot-tag">02</div>
+      <div>
+        <h3>Governance</h3>
+        <p>A consistent, compliant, and transparent governance framework guiding secure, ethical, and responsible AI use across the organization. This includes user policies and operational procedures used to determine how AI projects get selected, evaluated and adhere to compliance.</p>
+        <span class="pilot-status">Underway</span>
+      </div>
+    </div>
+
+    <div class="pilot" style="border-left-color:var(--line);">
+      <div class="pilot-tag">03</div>
+      <div>
+        <h3>Scale</h3>
+        <p>The security infrastructure, processes, and data foundation required to move beyond isolated pilots into repeatable, scalable AI workflows.</p>
+        <span class="pilot-status" style="background:var(--line);color:var(--ink-soft);">Near-term goal</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line);">
+    <p style="font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin:0 0 14px;">Ongoing across all stages</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
+      <div>
+        <h4 style="margin:0 0 6px;font-size:14.5px;">Education &amp; training</h4>
+        <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">Building staff fluency and role-specific development for responsible, effective AI use, drawing on case studies from active pilots.</p>
+      </div>
+      <div>
+        <h4 style="margin:0 0 6px;font-size:14.5px;">Monitoring &amp; evaluation</h4>
+        <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">Tracking output quality and performance; findings feed directly into roadmap decisions.</p>
+      </div>
+      <div>
+        <h4 style="margin:0 0 6px;font-size:14.5px;">Governance &amp; policy</h4>
+        <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">Maintaining an AI policy and process, anchored in a security and risk mitigation structure built with our cybersecurity team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+  <section id="now">
+    <div class="section-head">
+      <h2>Now: building the foundation</h2>
+  
+    </div>
+    <p class="section-sub"> Three pilot use cases are currently running. Rather than scale on early signal, a structured evaluation has been set up. This means observing real usage, regularly validating and collecting feedback and defining metrics that indicate value to establish a sound design of experiments.</p>
+
+    <div class="pilots">
+      <div class="pilot">
+        <div class="pilot-tag">01 · Policy<br>Assistant</div>
+        <div>
+          <h3>Policy chat assistant</h3>
+          <p>A chat-based tool for updating and generating agency policy. It surfaces any compliance gaps and cites appropriate guidelines and law.</p>
+          <div class="scope">Scope: all divisional &amp; program policy, Community Health & Behavioral Services (CHBS)</div>
+          <span class="pilot-status">Piloting. Actively being used by divisional management team.</span>
+        </div>
+      </div>
+
+      <div class="pilot">
+        <div class="pilot-tag">02 · Documentation Quality</div>
+        <div>
+          <h3>Documentation quality report</h3>
+          <p>An agent that reviews service-note quality for every staff member and individual served, flagging notes that fall short of standard.</p>
+          <div class="scope">Scope: 5 pilot residences, 42 individuals and management staff.</div>
+          <span class="pilot-status">Piloting</span>
+        </div>
+      </div>
+
+      <div class="pilot">
+        <div class="pilot-tag">03 · Incident Review</div>
+        <div>
+          <h3>Incident review agent</h3>
+          <p>Flags inconsistencies between incident reports and shift documentation, so gaps get caught before they become compliance risk.</p>
+          <div class="scope">Scope: 5 pilot residences, 42 individuals and management staff.</div>
+          <span class="pilot-status">Piloting</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+ 
+  <hr class="rule">
+  <section>
+    <div class="section-head">
+      <h2>Background</h2>
+      <span class="section-meta">2016 — 2024</span>
+    </div>
+    <p class="section-sub">The program- and change-management track record this role was built on. A decade of leadership in CRM, lifecycle, and campaign programs end-to-end for consumer tech companies.</p>
+
+    <div class="timeline">
+      <div class="trow">
+        <div class="when">2024 — 2025</div>
+        <div>
+          <h4>Research Assistant, <span class="co">AI Exploration Center, SUNY Poly</span></h4>
+          <p>Built a RAG engine as an M.S. capstone, owning the full lifecycle from architecture to deployment, and acted as product owner across interdisciplinary AI research initiatives.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="when">2022 — 2024</div>
+        <div>
+          <h4>Sr. Campaign Manager → CRM Marketing Manager, <span class="co">eBay</span></h4>
+          <p>Owned 30+ quarterly campaigns as product owner across merchandising, marketing, and product; drove an 11% lift in clickthrough and a 12% lift in seller activation.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="when">2019 — 2022</div>
+        <div>
+          <h4>CRM Engagement Manager, <span class="co">Chegg</span></h4>
+          <p>Owned retention-funnel optimization and A/B testing roadmap, increasing conversions by 3% and informing lifecycle strategy across product teams.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="when">2016 — 2019</div>
+        <div>
+          <h4>Email Marketing Lead / Sr. Marketing Coordinator, <span class="co">Open English · Online Vacation Center</span></h4>
+          <p>Ran multilingual lifecycle programs across US and LATAM markets and scaled email production 600% while integrating CRM with sales operations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="tight">
+    <div class="section-head">
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>AI &amp; Governance</h4>
+        <div class="tags">
+          <span class="tag">AI policy &amp; governance</span>
+          <span class="tag">RAG systems</span>
+          <span class="tag">Prompt engineering</span>
+          <span class="tag">LLM integration</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Compliance review</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Program &amp; Ops</h4>
+        <div class="tags">
+          <span class="tag">Product ownership</span>
+          <span class="tag">Change management</span>
+          <span class="tag">Agile / Scrum</span>
+          <span class="tag">Stakeholder management</span>
+          <span class="tag">Design of Experiments</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="tight">
+    <div class="section-head">
+      <h2>Education &amp; certifications</h2>
+    </div>
+    <div class="edu-grid">
+      <div>
+        <div class="edu-item">
+          <div class="deg">M.S. Data Science &amp; Analytics</div>
+          <div class="school">SUNY Polytechnic Institute</div>
+          <div class="when">2025</div>
+        </div>
+        <div class="edu-item" style="margin-top:16px;">
+          <div class="deg">B.A. Political Science</div>
+          <div class="school">Binghamton University</div>
+        </div>
+        <div class="edu-item" style="margin-top:16px;">
+          <div class="deg">A.S. Business Administration</div>
+          <div class="school">Morrisville State College</div>
+        </div>
+      </div>
+      <ul class="certs">
+        <li>Certified Scrum Product Owner®, Scrum Alliance</li>
+        <li>Certified Manufacturing Associate (CMfgA), SME</li>
+        <li>OSHA 10 Certification, RIT</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <footer>
+    <div class="contact-line">
+      <a href="mailto:jessi@jessijaramillo.com">jessi@jessijaramillo.com</a>
+      <a href="https://linkedin.com/in/jessijj" target="_blank" rel="noopener">linkedin.com/in/jessijj</a>
+    </div>
+    <p class="fine">Fluent in English &amp; Spanish.</p>
+  </footer>
+</div>
+
+</body>
+</html>
