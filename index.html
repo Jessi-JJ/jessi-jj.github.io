@@ -107,6 +107,8 @@
   }
 
   section{padding:64px 0;}
+  section#strategy,section#now{padding:40px 0;}
+  #strategy .section-sub,#now .section-sub{margin-bottom:18px;}
   section.tight{padding:48px 0;}
 
   .section-head{
@@ -122,6 +124,7 @@
     margin:0;
     font-weight:700;
   }
+  .section-head{align-items:center;}
   .section-meta{
     font-family:ui-monospace,"SF Mono",Consolas,monospace;
     font-size:12px;
@@ -187,6 +190,162 @@
     color:var(--ink);
     font-family:ui-monospace,"SF Mono",Consolas,monospace;
   }
+
+
+  /* Roadmap accordion */
+  .acc{display:grid;gap:6px;}
+  .acc details{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:4px solid var(--teal);
+  }
+  .acc summary{
+    list-style:none;
+    cursor:pointer;
+    display:grid;
+    grid-template-columns:24px 1fr auto 14px;
+    align-items:center;
+    gap:12px;
+    padding:9px 16px;
+  }
+  .acc summary::-webkit-details-marker{display:none;}
+  .acc summary:hover{background:#F6F4EC;}
+  .acc summary:focus-visible,
+  .scroller:focus-visible,
+  .car-btn:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .acc .num{
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    letter-spacing:.06em;
+  }
+  .acc h3{margin:0;font-size:15.5px;line-height:1.3;font-family:Georgia,serif;}
+  .acc .pilot-status{margin:0;font-size:10px;padding:2px 6px;}
+  .acc .chev{
+    width:8px;height:8px;
+    border-right:2px solid var(--ink-soft);
+    border-bottom:2px solid var(--ink-soft);
+    transform:rotate(45deg);
+    transition:transform .2s ease;
+    justify-self:center;
+    margin-top:-3px;
+  }
+  .acc details[open] .chev{transform:rotate(-135deg);margin-top:3px;}
+  .acc .acc-body{padding:0 16px 12px 52px;}
+  .acc .acc-body p{margin:0;color:var(--ink-soft);font-size:14px;max-width:72ch;}
+  .acc details.ongoing{border-left-color:var(--ink-soft);background:transparent;}
+  .acc details.ongoing h3{font-size:14px;}
+  .ongoing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;padding:0 16px 14px 52px;}
+  .ongoing-grid h4{margin:0 0 6px;font-size:14.5px;}
+  .ongoing-grid p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* Now in progress: horizontal scroller */
+  .car-controls{display:flex;gap:6px;}
+  .car-btn{
+    width:34px;height:34px;
+    border:1px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    font-size:16px;
+    line-height:1;
+    cursor:pointer;
+    border-radius:2px;
+    transition:background .15s ease,color .15s ease;
+  }
+  .car-btn:hover:not(:disabled){background:var(--ink);color:var(--paper);}
+  .car-btn:disabled{opacity:.3;cursor:default;}
+  .scroller{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-padding-left:0;
+    padding-bottom:14px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    scrollbar-color:var(--line) transparent;
+  }
+  .scroller .pilot{
+    flex:0 0 min(340px,82%);
+    scroll-snap-align:start;
+    grid-template-columns:1fr;
+    gap:8px;
+    align-content:start;
+    padding:14px 16px;
+  }
+  .scroller .pilot h3{font-size:16px;margin-bottom:4px;}
+  .scroller .pilot p{font-size:13.8px;line-height:1.5;}
+  .scroller .pilot .scope{margin-top:6px;font-size:12px;}
+  .scroller .pilot-status{margin-top:6px;}
+  .scroller .pilot:nth-child(1){border-left-color:var(--teal);}
+
+
+  /* Strategic objectives + rollout labels */
+  .sub-label{
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-soft);margin:0 0 8px;
+  }
+  .sub-label.gap{margin-top:22px;}
+  .obj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .obj{border:1px solid var(--line);border-top:3px solid var(--teal);background:var(--paper);padding:12px 16px 14px;}
+  .obj h3{margin:0 0 4px;font-size:15.5px;font-family:Georgia,serif;}
+  .obj p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-soft);}
+  .acc-body ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:14px;}
+  .acc-body li{margin:2px 0;}
+  @media (max-width:720px){.obj-grid{grid-template-columns:1fr;}}
+
+
+  /* Roadmap track */
+  .road{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:6px;}
+  .stop{position:relative;padding-top:26px;}
+  .stop::after{ /* dot */
+    content:"";position:absolute;top:0;left:0;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--teal);box-sizing:border-box;
+  }
+  .stop::before{ /* connector to next stop */
+    content:"";position:absolute;top:6px;left:18px;right:-20px;height:2px;
+    background:var(--teal);
+  }
+  .stop.next::after{background:var(--paper);border:2px solid var(--line);}
+  .stop.leads-next::before{
+    background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px);
+  }
+  .stop.last::before{display:none;}
+  .stop .tag{
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-soft);margin:0 0 4px;
+  }
+  .stop h3{margin:0 0 4px;font-size:17px;font-family:Georgia,serif;}
+  .stop p{margin:0;font-size:14px;line-height:1.5;color:var(--ink-soft);}
+  @media (max-width:720px){
+    .road{grid-template-columns:1fr;gap:20px;}
+    .stop{padding:0 0 0 30px;}
+    .stop::after{top:3px;}
+    .stop::before{top:20px;left:6px;right:auto;width:2px;height:calc(100% + 4px);}
+    .stop.leads-next::before{
+      background:repeating-linear-gradient(180deg,var(--line) 0 6px,transparent 6px 12px);
+    }
+  }
+
+
+  /* Hero jump links */
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  .jump{
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin-top:20px;
+    font-family:ui-monospace,"SF Mono",Consolas,monospace;
+    font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  }
+  .jump span{color:var(--ink-soft);opacity:.7;}
+  .jump a{
+    color:var(--ink-soft);text-decoration:none;
+    border-bottom:1px solid var(--line);padding-bottom:1px;
+    transition:color .15s ease,border-color .15s ease;
+  }
+  .jump a:hover,.jump a:focus-visible{color:var(--teal);border-color:var(--teal);outline:none;}
 
   .foundation-note{
     font-size:14.5px;
@@ -268,6 +427,11 @@
   .hero-grid{grid-template-columns:1fr;}
   .portrait-frame{max-width:280px;}
   .pilot{grid-template-columns:1fr;}
+  .acc summary{grid-template-columns:1fr 18px;gap:6px 12px;}
+  .acc summary .num{display:none;}
+  .acc summary .pilot-status{grid-column:1;justify-self:start;order:3;}
+  .acc .acc-body,.ongoing-grid{padding-left:16px;}
+  .ongoing-grid{grid-template-columns:1fr;gap:16px;}
   .skill-groups{grid-template-columns:1fr;}
   .edu-grid{grid-template-columns:1fr;}
   .trow{grid-template-columns:1fr;}
@@ -294,6 +458,13 @@
           <a class="btn primary" href="mailto:jessi@jessijaramillo.com">Email</a>
           <a class="btn" href="https://linkedin.com/in/jessijj" target="_blank" rel="noopener">LinkedIn</a>
         </div>
+        <nav class="jump" aria-label="Jump to section">
+          <span>Jump to</span>
+          <a href="#strategy">Strategy</a>
+          <a href="#now">Current Work</a>
+          <a href="#background">Background</a>
+          <a href="#skills">Skills</a>
+        </nav>
       </div>
       <div class="portrait-frame">
         <img src="headshot.jpg" alt="Portrait of Jessi Jaramillo">
@@ -307,65 +478,23 @@
     <h2>The Roadmap</h2>
     <span class="section-meta">JAN 2026 - PRESENT</span>
   </div>
-  <p class="section-sub">Since joining Upstate Caring Partners as Director of AI Programs, the first phase of work began by establishing a strategy. This three-stage roadmap provides a phased approach: measurable proof of value, establishing governance, infrastructure for scale. It mirrors the strategy leading health systems are converging on for responsible AI adoption.</p>
+  <p class="section-sub">Since joining Upstate Caring Partners as Director of AI Programs, the work has been organized as a three-part roadmap of strategic objectives. This reflects best practices for responsible AI adoption and hands-on experience launching programs: prove value in small, controlled pilots, put guardrails in place early, then build the foundation to scale.</p>
 
-  <div style="display:flex;align-items:center;margin:8px 0 6px;">
-    <span style="width:12px;height:12px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
-    <span style="flex:1;height:2px;background:var(--teal);margin:0 2px;"></span>
-    <span style="width:12px;height:12px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
-    <span style="flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px);margin:0 2px;"></span>
-    <span style="width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--line);flex-shrink:0;"></span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;font-family:ui-monospace,'SF Mono',Consolas,monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:28px;">
-    <span>Stage 1 — IN PROGRESS</span>
-    <span style="text-align:center;">Stage 2 — IN PROGRESS</span>
-    <span style="text-align:right;">Stage 3 — UP NEXT</span>
-  </div>
-
-  <div class="pilots">
-    <div class="pilot">
-      <div class="pilot-tag">01</div>
-      <div>
-        <h3>Proof of value</h3>
-        <p>Targeted pilots that validate efficiency gains and quality improvements before any wider rollout — the policy assistant, documentation quality, and incident review programs below.</p>
-        <span class="pilot-status">Underway</span>
-      </div>
+  <div class="road">
+    <div class="stop">
+      <p class="tag">01 &middot; In progress</p>
+      <h3>Proof of value</h3>
+      <p>Targeted pilots with defined success measures, tested and refined through feedback loops before any wider rollout.</p>
     </div>
-
-    <div class="pilot">
-      <div class="pilot-tag">02</div>
-      <div>
-        <h3>Governance</h3>
-        <p>A consistent, compliant, and transparent governance framework guiding secure, ethical, and responsible AI use across the organization. This includes user policies and operational procedures used to determine how AI projects get selected, evaluated and adhere to compliance.</p>
-        <span class="pilot-status">Underway</span>
-      </div>
+    <div class="stop leads-next">
+      <p class="tag">02 &middot; In progress</p>
+      <h3>Governance</h3>
+      <p>Clear policy, risk-based review, and cross-functional oversight, so every AI project has an owner and a path to approval.</p>
     </div>
-
-    <div class="pilot" style="border-left-color:var(--line);">
-      <div class="pilot-tag">03</div>
-      <div>
-        <h3>Scale</h3>
-        <p>The security infrastructure, processes, and data foundation required to move beyond isolated pilots into repeatable, scalable AI workflows.</p>
-        <span class="pilot-status" style="background:var(--line);color:var(--ink-soft);">Near-term goal</span>
-      </div>
-    </div>
-  </div>
-
-  <div style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line);">
-    <p style="font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin:0 0 14px;">Ongoing across all stages</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;">
-      <div>
-        <h4 style="margin:0 0 6px;font-size:14.5px;">Education &amp; training</h4>
-        <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">Building staff fluency and role-specific development for responsible, effective AI use, drawing on case studies from active pilots.</p>
-      </div>
-      <div>
-        <h4 style="margin:0 0 6px;font-size:14.5px;">Monitoring &amp; evaluation</h4>
-        <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">Tracking output quality and performance; findings feed directly into roadmap decisions.</p>
-      </div>
-      <div>
-        <h4 style="margin:0 0 6px;font-size:14.5px;">Governance &amp; policy</h4>
-        <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">Maintaining an AI policy and process, anchored in a security and risk mitigation structure built with our cybersecurity team.</p>
-      </div>
+    <div class="stop next last">
+      <p class="tag">03 &middot; Up next</p>
+      <h3>Scale</h3>
+      <p>Security controls, data foundations, and role-based training in place first, so pilots become repeatable workflows.</p>
     </div>
   </div>
 </section>
@@ -374,12 +503,15 @@
 
   <section id="now">
     <div class="section-head">
-      <h2>NoW in progress</h2>
-  
+      <h2>Current Work</h2>
+      <div class="car-controls">
+        <button class="car-btn" id="carPrev" aria-label="Previous pilot" disabled>&larr;</button>
+        <button class="car-btn" id="carNext" aria-label="Next pilot">&rarr;</button>
+      </div>
     </div>
     <p class="section-sub"> Three pilot use cases are currently running. Rather than scale on early signal, a structured evaluation has been set up. This means observing real usage, regularly validating and collecting feedback and defining metrics that indicate value to establish a sound design of experiments.</p>
 
-    <div class="pilots">
+    <div class="scroller" id="pilotScroller" tabindex="0" role="region" aria-label="Pilot use cases, scrolls horizontally">
       <div class="pilot">
         <div class="pilot-tag">01 · Policy<br>Assistant</div>
         <div>
@@ -414,7 +546,7 @@
   </section>
  
   <hr class="rule">
-  <section>
+  <section id="background">
     <div class="section-head">
       <h2>Background</h2>
       <span class="section-meta">2016 — 2024</span>
@@ -444,18 +576,23 @@
         </div>
       </div>
       <div class="trow">
-        <div class="when">2016 — 2019</div>
+        <div class="when">2018 — 2019</div>
         <div>
-          <h4>Email Marketing Lead / Sr. Marketing Coordinator, <span class="co">Open English · Online Vacation Center</span></h4>
-          <p>Ran multilingual lifecycle programs across US and LATAM markets and scaled email production 600% while integrating CRM with sales operations.</p>
+          <h4>Email Marketing Lead, <span class="co">Open English</span></h4>
+          <p>Led multilingual email strategy for US and LATAM markets, driving 8% growth in qualified leads through lead-nurture automation.</p>
+        </div>
+      </div>
+      <div class="trow">
+        <div class="when">2016 — 2018</div>
+        <div>
+          <h4>Sr. Marketing Coordinator, <span class="co">Online Vacation Center</span></h4>
+          <p>Integrated CRM with sales ops and introduced agile practices that grew team capacity and email output.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="rule">
-
-  <section class="tight">
+  <section class="tight" id="skills">
     <div class="section-head">
       <h2>Skills</h2>
     </div>
@@ -525,5 +662,24 @@
   </footer>
 </div>
 
+
+<script>
+(function(){
+  var sc=document.getElementById('pilotScroller'),
+      prev=document.getElementById('carPrev'),
+      next=document.getElementById('carNext');
+  if(!sc) return;
+  function step(){var c=sc.querySelector('.pilot');return c?c.offsetWidth+14:300;}
+  function update(){
+    prev.disabled = sc.scrollLeft<=2;
+    next.disabled = sc.scrollLeft+sc.clientWidth>=sc.scrollWidth-2;
+  }
+  prev.addEventListener('click',function(){sc.scrollBy({left:-step(),behavior:'smooth'});});
+  next.addEventListener('click',function(){sc.scrollBy({left:step(),behavior:'smooth'});});
+  sc.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+</script>
 </body>
 </html>
